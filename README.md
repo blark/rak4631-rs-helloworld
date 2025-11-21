@@ -38,4 +38,14 @@ Hello from nRF52840! Counter: 1
 
 - **Board**: RAK4631 WisBlock Core
 - **LED**: P1.04 (blue, on base board)
-- **Memory**: FLASH @ 0x26000, RAM @ 0x20002000 (8KB offset for Embassy)
+
+## Memory Configuration
+
+Custom `memory.x` required for RAK4631's Adafruit UF2 bootloader with SoftDevice S140 v6.1.1:
+
+```
+FLASH: 0x00026000 (bootloader + S140 v6.1.1 occupy first 152KB)
+RAM:   0x20002000 (8KB offset required for Embassy framework)
+```
+
+Embassy's standard S140 v7.3.0 config uses 0x27000/0x20020000 with only 128KB RAM available. Our configuration provides 248KB RAM.
